@@ -103,14 +103,106 @@ public class Main {
             countprint = countprint + 1;
         }
 */
-
+/*
         // Задание 7а Массив {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13} чередовать четные и нечетные
         int[] arr = new int[]{12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13};
         int length = arr.length;
+        int[] chetnyi = new int[length];
+        int[] nechetnyi = new int[length];
         int count = 0;
-        while (count < length){
-
+        int chet = 0;
+        int nechet = 0;
+        int replace = 0;
+        int i;
+            while(count < length) {
+                if (arr[count] % 2 == 0) {
+                    chetnyi[chet] = arr[count];
+                    chet = chet + 1;
+                } else {
+                    nechetnyi[nechet] = arr[count];
+                    nechet = nechet + 1;
+                }
+                count = count + 1;
+            }
+            if (chet < nechet) {
+                for (count = 0; count < chet; count++) {
+                    arr[replace] = chetnyi[count];
+                    replace = replace + 2;
+                }
+                replace = 1;
+                for (count = 0; count < chet; count++){
+                    arr[replace] = nechetnyi[count];
+                    replace = replace + 2;
+                }
+                for (i = chet; i < nechet; i++){
+                    arr[replace - 1] = nechetnyi[i];
+                    replace = replace + 1;
+                }
+            }
+            else {
+                for (count = 0; count < nechet; count++) {
+                    arr[replace] = nechetnyi[count];
+                    replace = replace + 2;
+                }
+                replace = 1;
+                for (count = 0; count < nechet; count++){
+                    arr[replace] = chetnyi[count];
+                    replace = replace + 2;
+                }
+                for (i = nechet; i < chet; i++){
+                    arr[replace - 1] = chetnyi[i];
+                    replace = replace + 1;
+                }
+            }
+        for (count = 0; count < length; count++){
+            System.out.print(arr[count] + " ");
         }
+*/
+
+        // Задание 7б Массив {12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13} чередовать четные и нечетные
+        int[] arr = new int[]{12, 83, 17, 31, 2, 7, 93, 76, 61, 22, 45, 98, 53, 16, 13};
+        int length = arr.length;
+        int count = 0;
+        int replace;
+        int i;
+        int n = 1;
+
+                    while (count < length - 1) {
+                        n = 1;
+                        while (arr[count] % 2 == 0 && arr[count + 1] % 2 == 0 && count + 1 + n < length) {
+                            if (arr[count + 1 + n] % 2 != 0){
+                                replace = arr[count + 1];
+                                arr[count + 1] = arr[count + 1 + n];
+                                arr[count + 1 + n] = replace;
+                            }
+                            else{
+                                replace = arr[count + 1];
+                                arr[count + 1] = arr[count + 1 + n];
+                                arr[count + 1 + n] = replace;
+                            }
+                            n = n + 1;
+                        }
+                        n = 1;
+                        while (arr[count] % 2 != 0 && arr[count + 1] % 2 != 0 && count + 1 + n < length) {
+                            if (arr[count + n] % 2 == 0){
+                                replace = arr[count + 1];
+                            arr[count + 1] = arr[count + 1 + n];
+                            arr[count + 1 + n] = replace;
+                            }
+                            else{
+                                replace = arr[count + 1];
+                                arr[count + 1] = arr[count + 1 + n];
+                                arr[count + 1 + n] = replace;
+                            }
+                            n = n + 1;
+
+                        }
+                        count = count + 1;
+                    }
+               for (i = 0; i < length; i++){
+                   System.out.print(arr[i] + " ");
+               }
+        
 
     }
 }
